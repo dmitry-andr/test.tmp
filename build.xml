@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name = "Test Ant Project" default = "build">
 	<property name = "src.dir" value = "src"/>
-	<property name = "build.dir" value = "build"/>	
+	<property name = "build.dir" value = "build"/>
+	<property name = "bin.dir" value = "bin"/>
 <target name = "build" description = "Compile main source tree java files">
    <mkdir dir = "${build.dir}"/>
    <javac destdir = "${build.dir}" source = "1.8" target = "1.8" debug = "true"
@@ -9,11 +10,29 @@
       <src path = "${src.dir}"/>
    </javac>
 </target>
+	
+	
+<target name = "build-jar">
+	<jar destfile = "${bin.dir}/app.jar"
+		  basedir = "${build.dir}"
+		  includes = "**"
+		  excludes = "**/Test.class">
+		   
+		  <manifest>
+			<attribute name = "Main-Class" value = "test.tmp.MainProgram"/>
+		  </manifest>
+	</jar>
+</target>
+	
+	
+	
 <target name = "clean" description = "Clean output directories">
    <delete>
       <fileset dir = "${build.dir}">
          <include name = "**/*.class"/>
       </fileset>
    </delete>
+   <delete dir="bin"/>
+   <delete dir="build"/>
 </target>
 </project>
