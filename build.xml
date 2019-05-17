@@ -1,4 +1,3 @@
-<?xml version = "1.0"?>
 <project name = "Test Ant Project" default = "build">
 	<property name = "src.dir" value = "src"/>
 	<property name = "build.dir" value = "build"/>
